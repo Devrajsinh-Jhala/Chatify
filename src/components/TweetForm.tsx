@@ -79,7 +79,7 @@ function Form() {
           style={{ height: 0 }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none"
+          className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none dark:bg-[#121212]"
           placeholder="What's your take?"
           name=""
           id=""

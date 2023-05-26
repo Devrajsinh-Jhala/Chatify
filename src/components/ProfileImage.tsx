@@ -10,7 +10,7 @@ type Props = {
 const ProfileImage = ({ src, className = "" }: Props) => {
   return (
     <div
-      className={`relative h-12 w-12 overflow-hidden rounded-full ${className}`}
+      className={`relative h-6 w-6 overflow-hidden rounded-full sm:h-12 sm:w-12 ${className}`}
     >
       {src === null ? (
         <VscAccount className="h-full w-full" />

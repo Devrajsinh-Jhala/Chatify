@@ -119,17 +119,17 @@ function TweetCard({
       <div className="flex flex-grow flex-col">
         <div className="flex gap-1">
           <Link
-            className="font-bold outline-none hover:underline focus-visible:underline"
+            className="text-xs font-bold outline-none hover:underline focus-visible:underline sm:text-base"
             href={`/profile/${user.id}`}
           >
             {user.name}
           </Link>
-          <span className="text-gray-500">-</span>
-          <span className="text-gray-500">
+          <span className="text-xs text-gray-500 sm:text-base">-</span>
+          <span className="text-xs text-gray-500 sm:text-base">
             {dateTimeFormatter.format(createdAt)}
           </span>
         </div>
-        <p className="whitespace-pre-wrap">{content}</p>
+        <p className="whitespace-pre-wrap text-xs sm:text-base">{content}</p>
         <HeartButton
           onClick={() => handleToggleLike()}
           isLoading={toggleLike.isLoading}
@@ -156,9 +156,9 @@ function HeartButton({
 
   if (session.status !== "authenticated") {
     return (
-      <div className="mb-1 mt-1 flex items-center gap-3 self-start text-gray-500">
-        <HeartIcon />
-        <span>{likeCount}</span>
+      <div className="mb-1 mt-1 flex items-center gap-3 self-start text-xs text-gray-500 sm:text-base">
+        <HeartIcon className="h-6 w-6 sm:h-12 sm:w-12" />
+        <span className="text-xs sm:text-base">{likeCount}</span>
       </div>
     );
   }

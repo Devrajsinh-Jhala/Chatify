@@ -7,6 +7,7 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Head from "next/head";
 import SideNav from "../components/SideNav";
+import { ThemeProvider } from "next-themes";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -22,12 +23,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto flex sm:pr-4">
-        <SideNav />
-        <div className="min-h-screen flex-grow items-start border-x">
-          <Component {...pageProps} />
+      <ThemeProvider attribute="class">
+        <div className="container mx-auto flex sm:pr-4">
+          <SideNav />
+          <div className="min-h-screen flex-grow items-start border-x">
+            <Component {...pageProps} />
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     </SessionProvider>
   );
 };
