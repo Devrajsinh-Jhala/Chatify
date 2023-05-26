@@ -10,8 +10,6 @@ import Button from "~/components/Button";
 import ProfileImage from "~/components/ProfileImage";
 import { api } from "~/utils/api";
 
-type Props = {};
-
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return null;
   textArea.style.height = "0";
@@ -94,7 +92,7 @@ function Form() {
   );
 }
 
-const TweetForm = (props: Props) => {
+const TweetForm = () => {
   const session = useSession();
   if (session.status !== "authenticated") return null;
   return <Form />;

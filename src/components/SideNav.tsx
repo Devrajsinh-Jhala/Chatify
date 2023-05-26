@@ -34,7 +34,7 @@ const SideNav = () => {
         )}
         {user == null ? (
           <li>
-            <button onClick={() => signIn()}>
+            <button onClick={() => void signIn()}>
               <IconHoverEffect>
                 <span className="flex items-center gap-4">
                   <VscSignIn className="h-8 w-8 fill-green-700" />
@@ -47,7 +47,7 @@ const SideNav = () => {
           </li>
         ) : (
           <li>
-            <button onClick={() => signOut()}>
+            <button onClick={() => void signOut()}>
               <IconHoverEffect>
                 <span className="flex items-center gap-4">
                   <VscSignOut className="h-8 w-8 fill-red-700" />
