@@ -4,9 +4,7 @@ import React from "react";
 import IconHoverEffect from "./IconHoverEffect";
 import { VscAccount, VscHome, VscSignIn, VscSignOut } from "react-icons/vsc";
 
-type Props = {};
-
-const SideNav = (props: Props) => {
+const SideNav = () => {
   const session = useSession();
   const user = session.data?.user;
   return (
