@@ -5,6 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import Head from "next/head";
+import SideNav from "../components/SideNav";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,7 +14,20 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Head>
+        <title>Opinion</title>
+        <meta
+          name="description"
+          content="This is a twitter clone made by Devraj Jhala using the t3 stack"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="container mx-auto flex sm:pr-4">
+        <SideNav />
+        <div className="min-h-screen flex-grow items-start border-x">
+          <Component {...pageProps} />
+        </div>
+      </div>
     </SessionProvider>
   );
 };
