@@ -8,6 +8,7 @@ import "~/styles/globals.css";
 import Head from "next/head";
 import SideNav from "../components/SideNav";
 import { ThemeProvider } from "next-themes";
+import { Analytics } from "@vercel/analytics/react";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -28,6 +29,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <SideNav />
           <div className="min-h-screen flex-grow items-start border-x">
             <Component {...pageProps} />
+            <Analytics />
           </div>
         </div>
       </ThemeProvider>
