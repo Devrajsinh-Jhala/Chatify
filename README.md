@@ -4,11 +4,11 @@ It is a full stack social media app where you can voice your opinions, like othe
 
 ## Screenshots
 
-![Screenshots 5](src/assets/5.png)
-![Screenshots 1](src/assets/1.png)
-![Screenshots 2](src/assets/2.png)
-![Screenshots 3](src/assets/3.png)
-![Screenshots 4](src/assets/4.png)
+<img width="913" alt="5" src="https://github.com/Devrajsinh-Jhala/Chatify/assets/84381242/97f6bfae-ca32-4a08-9cfe-84b0bdcf9c9d">
+<img width="941" alt="1" src="https://github.com/Devrajsinh-Jhala/Chatify/assets/84381242/9b2932a9-6f34-414c-b0e9-f3138e10cd13">
+<img width="953" alt="2" src="https://github.com/Devrajsinh-Jhala/Chatify/assets/84381242/388f377c-baad-4cec-9384-07a6bf340b9c">
+<img width="959" alt="3" src="https://github.com/Devrajsinh-Jhala/Chatify/assets/84381242/e62852d8-f4a8-4ecb-a201-6f21ab3c0cf1">
+<img width="962" alt="4" src="https://github.com/Devrajsinh-Jhala/Chatify/assets/84381242/ecd4939b-5789-4298-95f9-737872d94b2f">
 
 ## Tech Stack
 
