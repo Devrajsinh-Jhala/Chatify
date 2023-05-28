@@ -157,7 +157,7 @@ function HeartButton({
   if (session.status !== "authenticated") {
     return (
       <div className="mb-1 mt-1 flex items-center gap-3 self-start text-xs text-gray-500 sm:text-base">
-        <HeartIcon className="h-6 w-6 sm:h-12 sm:w-12" />
+        <HeartIcon className="h-4 w-4" />
         <span className="text-xs sm:text-base">{likeCount}</span>
       </div>
     );
