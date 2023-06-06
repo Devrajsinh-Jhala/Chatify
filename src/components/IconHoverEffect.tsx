@@ -8,11 +8,11 @@ type Props = {
 };
 
 const IconHoverEffect = ({ children, red = false, blue = false }: Props) => {
-  let colorClasses = red
+  const colorClasses = red
     ? "outline-red-400 hover:bg-red-200 group-hover-bg-red-200 group-focus-visible:bg-red-200 focus-visible-bg-red-200"
     : "outline-gray-400 hover:bg-gray-200 dark:hover:text-gray-800 group-hover-bg-gray-200 group-focus-visible:bg-gray-200 focus-visible-bg-gray-200";
 
-  let bookmarkClasses = blue
+  const bookmarkClasses = blue
     ? "outline-blue-400 hover:bg-blue-200 group-hover-bg-blue-200 group-focus-visible:bg-blue-200 focus-visible-bg-blue-200"
     : "outline-gray-400 hover:bg-gray-200 dark:hover:text-gray-800 group-hover-bg-gray-200 group-focus-visible:bg-gray-200 focus-visible-bg-gray-200";
 
