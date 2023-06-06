@@ -12,19 +12,30 @@ datasource db {
 }
 
 model Tweet {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   userId    String
   content   String
-  createdAt DateTime @default(now())
-
-  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  likes Like[]
+  createdAt DateTime   @default(now())
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes     Like[]
+  bookmarks Bookmark[]
 
   @@unique([createdAt, id])
   @@index([userId])
 }
 
 model Like {
+  userId  String
+  tweetId String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Tweet   Tweet  @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+
+  @@id([userId, tweetId])
+  @@index([userId])
+  @@index([tweetId])
+}
+
+model Bookmark {
   userId  String
   tweetId String
   user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -66,17 +77,18 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
   tweets        Tweet[]
   likes         Like[]
-  followers     User[]    @relation(name: "Followers")
-  follows       User[]    @relation(name: "Followers")
+  bookmarks     Bookmark[]
+  followers     User[]     @relation(name: "Followers")
+  follows       User[]     @relation(name: "Followers")
 }
 
 model VerificationToken {

@@ -15,6 +15,7 @@ const Home: NextPage = () => {
   const session = useSession();
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
+
   return (
     <>
       <header className="sticky top-0 z-10 border-b bg-white pt-2 text-black dark:bg-[#121212] dark:text-white">
@@ -27,7 +28,7 @@ const Home: NextPage = () => {
               }
               className={` ${
                 theme === "dark" ? "hidden" : "block"
-              } h-6 w-6 cursor-pointer sm:w-12  sm:w-12 `}
+              } h-6 w-6 cursor-pointer  sm:w-12 `}
             />
             <BsFillMoonFill
               onClick={() =>
@@ -61,7 +62,9 @@ const Home: NextPage = () => {
         )}
       </header>
       <TweetForm />
-      {selectedTab === "Recent" ? <RecentTweets /> : <FollowingTweets />}
+      {selectedTab === "Recent" && <RecentTweets />}
+      {selectedTab === "Following" && <FollowingTweets />}
+      {/* {selectedTab === "Bookmarks" && <Bookmarks />} */}
     </>
   );
 };
@@ -103,3 +106,21 @@ function FollowingTweets() {
     />
   );
 }
+
+// function Bookmarks() {
+//   const tweets = api.tweet.infiniteFeed.useInfiniteQuery(
+//     { onlyBookmark: true },
+//     {
+//       getNextPageParam: (lastPage) => lastPage.nextCursor,
+//     }
+//   );
+//   return (
+//     <InfiniteTweetList
+//       tweets={tweets.data?.pages.flatMap((page) => page.tweets)}
+//       isError={tweets.isError}
+//       isLoading={tweets.isLoading}
+//       hasMore={tweets.hasNextPage}
+//       fetchNewTweets={tweets.fetchNextPage}
+//     />
+//   );
+// }

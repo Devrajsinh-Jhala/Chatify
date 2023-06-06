@@ -57,7 +57,31 @@ export const tweetRouter = createTRPCRouter({
       await ctx.prisma.like.delete({ where: { userId_tweetId: data } })
       return { addedLike: false }
     }
-  })
+  }),
+  toggleBookmark: protectedProcedure.input(z.object({ id: z.string() })).mutation(async ({ input: { id }, ctx }) => {
+    const data = { tweetId: id, userId: ctx.session.user.id }
+    const existingBookmark = await ctx.prisma.bookmark.findUnique({
+      where: {
+        userId_tweetId: data
+      }
+    })
+    if (existingBookmark == null) {
+      await ctx.prisma.bookmark.create({ data })
+      return { addedBookmark: true }
+    } else {
+      await ctx.prisma.bookmark.delete({ where: { userId_tweetId: data } })
+      return { addedBookmark: false }
+    }
+  }),
+  getBookmarks: publicProcedure.input(z.object({ id: z.string() })).query(async ({ input: { id }, ctx }) => {
+    const data = { tweetId: id, userId: ctx.session!.user.id }
+    const existingBookmark = await ctx.prisma.bookmark.findUnique({
+      where: {
+        userId_tweetId: data
+      }
+    })
+    return existingBookmark
+  }),
 
 });
 
@@ -82,7 +106,7 @@ async function getInfiniteTweets({
       id: true,
       content: true,
       createdAt: true,
-      _count: { select: { likes: true } },
+      _count: { select: { likes: true, bookmarks: true } },
       user: {
         select: {
           name: true,
@@ -90,7 +114,8 @@ async function getInfiniteTweets({
           image: true
         }
       },
-      likes: currentUserId == null ? false : { where: { userId: currentUserId } }
+      likes: currentUserId == null ? false : { where: { userId: currentUserId } },
+      bookmarks: currentUserId == null ? false : { where: { userId: currentUserId } },
     }
   })
 
@@ -111,8 +136,40 @@ async function getInfiniteTweets({
         likeCount: tweet._count.likes,
         user: tweet.user,
         likedByMe: tweet.likes?.length > 0,
+        bookmarkedByMe: tweet.bookmarks?.length > 0,
+        bookmarkCount: tweet._count.bookmarks
       }
     }), nextCursor
   }
 }
 
+// query GetAllTweetsFilteredThroughBookmarks {
+//   allTweets(where: {
+//     bookmarks: {
+//       exists: true
+//     }
+//   }) {
+//     id
+//     userId
+//     content
+//     createdAt
+//     user {
+//       id
+//       name
+//     }
+//     likes {
+//       id
+//       user {
+//         id
+//         name
+//       }
+//     }
+//     bookmarks {
+//       id
+//       user {
+//         id
+//         name
+//       }
+//     }
+//   }
+// }

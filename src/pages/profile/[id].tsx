@@ -27,6 +27,9 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     { getNextPageParam: (lastPage) => lastPage.nextCursor }
   );
 
+  const { data: bookmarks } = api.tweet.getBookmarks.useQuery({ id: id });
+  console.log();
+
   const trpcUtils = api.useContext();
   const toggleFollow = api.profile.toggleFollow.useMutation({
     onSuccess: ({ addedFollow }) => {
