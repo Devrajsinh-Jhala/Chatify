@@ -34,6 +34,7 @@ function Form() {
     onSuccess: (newTweet) => {
       setInput("");
       if (session.status !== "authenticated") return;
+      // @ts-ignore
       trpcUtils.tweet.infiniteFeed.setInfiniteData({}, (oldData) => {
         if (oldData == null || oldData.pages[0] == null) return;
 
